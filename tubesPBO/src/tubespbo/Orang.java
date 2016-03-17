@@ -10,7 +10,6 @@ package tubespbo;
  * @author Acer-PC
  */
 public class Orang {
-    
 	private String nama; 
 	private String username;
 	private String password;
