@@ -13,14 +13,10 @@ public class Pesanan {
 	
 	private String origin;
 	private String destination;
-	private String namaPelanggan;
-	private String noHpPelanggan;
 	
-public Pesanan (String origin, String destination, String namaPelanggan, String noHpPelanggan) {
+public Pesanan (String origin, String destination) {
 	this.origin = origin;
 	this.destination = destination;
-	this.namaPelanggan = namaPelanggan;
-	this.noHpPelanggan = noHpPelanggan;
 }
 
 public void setOrigin (String origin){
@@ -35,20 +31,6 @@ public void setDestination (String destination){
 }
 public String getDestination() {
 	return this.destination;
-}
-
-public void setNamaPelanggan (String namaPelanggan){
-	this.namaPelanggan= namaPelanggan;
-}
-public String getNamaPelangan() {
-	return this.namaPelanggan;
-}
-
-public void setNoHpPelanggan (String noHpPelanggan){
-	this.noHpPelanggan= noHpPelanggan;
-}
-public String getNoHpPelanggan() {
-	return this.noHpPelanggan;
 }
 
 }

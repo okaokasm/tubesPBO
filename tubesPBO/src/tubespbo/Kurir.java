@@ -11,10 +11,11 @@ package tubespbo;
  */
 public class Kurir extends Pesanan {
 	private double weight;
-	
-public Kurir (double weight) {
-	this.weight = weight;
-}
+
+    public Kurir(String origin, String destination, double weight) {
+        super(origin, destination);
+        this.weight = weight;
+    }
 
 public void setWeight(double weight) {
 	this.weight= weight;
