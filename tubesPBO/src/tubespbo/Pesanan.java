@@ -11,26 +11,26 @@ package tubespbo;
  */
 public class Pesanan {
 	
-	private String origin;
-	private String destination;
+    private String origin;
+    private String destination;
 	
-public Pesanan (String origin, String destination) {
-	this.origin = origin;
-	this.destination = destination;
-}
+    public Pesanan (String origin, String destination) {
+            this.origin = origin;
+            this.destination = destination;
+    }
 
-public void setOrigin (String origin){
-	this.origin= origin;
-}
-public String getOrigin() {
-	return this.origin;
-}
+    public void setOrigin (String origin){
+            this.origin= origin;
+    }
+    public String getOrigin() {
+            return this.origin;
+    }
 
-public void setDestination (String destination){
-	this.destination= destination;
-}
-public String getDestination() {
-	return this.destination;
-}
+    public void setDestination (String destination){
+            this.destination= destination;
+    }
+    public String getDestination() {
+            return this.destination;
+    }
 
 }

@@ -12,9 +12,13 @@ import java.util.List;
  *
  * @author irfananda
  */
-public class Pelanggan {
+public class Pelanggan extends Orang{
     
     private List<Pesanan> pesanans = new ArrayList<>();
+
+    public Pelanggan(String nama, String username, String password, String noHp) {
+        super(nama, username, password, noHp);
+    }
     
     public void createPesanan(String origin, String destination){
         pesanans.add(new Pesanan(origin, destination));
@@ -31,5 +35,9 @@ public class Pelanggan {
     public void removePesanan(int x){
         pesanans.remove(x);
     }
+
+    public List<Pesanan> getAllPesanan() {
+        return pesanans;
+    }        
     
 }
