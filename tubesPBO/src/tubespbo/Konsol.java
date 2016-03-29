@@ -67,7 +67,7 @@ public class Konsol {
     public void mainMenu(){                     
         int x,y, weight, n;
         String username,password, nama, nohp;
-        String origin,destination;    
+        String origin,destination, any;    
         Pelanggan pelanggan = null;
         do{
             clearScreen();
@@ -150,14 +150,29 @@ public class Konsol {
                             //bisa lihat pesanan, bisa ambil pesanan
                             //pesanan dapat berupa pesanan/kurir   
                             clearScreen();
-                            showPesanan(pelanggan);
-                            System.out.println("-1. Back");
-                            System.out.print("Ambil pesanan : ");
-                            n = scanner.nextInt();
-                            if(n>=0){
-                                pengemudi.addPesanan(pelanggan.getPesanan(n));
+                            
+                            System.out.println("0. Back");
+                            System.out.println("1. Ambil pesanan ");
+                            System.out.println("2. Lihat pesanan yang diambil ");
+                            System.out.print("Pilih menu : ");
+                            y = scanner.nextInt();
+                            switch(y){
+                                case 1:
+                                    showPesanan(pelanggan);
+                                    System.out.print("Ambil pesanan : ");
+                                    n = scanner.nextInt();
+                                    if(n>=0){
+                                        pengemudi.addPesanan(pelanggan.getPesanan(n));
+                                    }
+                                    break;
+                                case 2:
+                                    showPesanan(pengemudi);
+                                    System.out.print("Press any key <BACK>");
+                                    any = scanner.next();
+                                    break;
                             }
-                        }while(n>=0);
+                            
+                        }while(y!=0);
                     }else{
                         System.out.println("username/password salah");
                     }   
@@ -217,6 +232,19 @@ public class Konsol {
             }else if(pelanggan.getPesanan(i) instanceof Pesanan){                                        
                 System.out.println(i+". origin    : "+pelanggan.getPesanan(i).getOrigin());
                 System.out.println("  destination : "+pelanggan.getPesanan(i).getDestination());
+            }
+        }
+    }
+    
+    private void showPesanan(Pengemudi pengemudi) {
+        for(int i=0; i<pengemudi.getAllPesanan().size(); i++){
+            if(pengemudi.getPesanan(i) instanceof Kurir){                                        
+                System.out.println(i+". origin    : "+pengemudi.getPesanan(i).getOrigin());
+                System.out.println("  destination : "+pengemudi.getPesanan(i).getDestination());
+                System.out.println("  weight : "+((Kurir) pengemudi.getPesanan(i)).getWeight());
+            }else if(pengemudi.getPesanan(i) instanceof Pesanan){                                        
+                System.out.println(i+". origin    : "+pengemudi.getPesanan(i).getOrigin());
+                System.out.println("  destination : "+pengemudi.getPesanan(i).getDestination());
             }
         }
     }
