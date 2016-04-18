@@ -14,7 +14,7 @@ import tubespbo.model.Aplikasi;
 public class ControllerLogin {
 
     ControllerLogin(Aplikasi aplikasi) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("ini login");
     }
     
 }

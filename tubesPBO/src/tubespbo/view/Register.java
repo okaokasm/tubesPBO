@@ -263,8 +263,6 @@ public class Register extends javax.swing.JFrame {
     
     public void addListener(ActionListener e){
         btnok.addActionListener(e);
-        radioCustomer.addActionListener(e);
-        radioDriver.addActionListener(e);
     }
     
 }

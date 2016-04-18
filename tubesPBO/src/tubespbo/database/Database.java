@@ -22,18 +22,21 @@ import tubespbo.model.Pesanan;
  */
 public class Database {
     
-    private final String SERVER = "jdbc:mysql://localhost:3306/Syaujek?zeroDateTimeBehavior=convertToNull";
+    private final String SERVER = "jdbc:mysql://127.0.0.1/Syaujek";
     private final String DBUSER = "root";
     private final String DBPASSWORD = "";
     Statement statement;
     Connection connection;
     
     public void connect() {
-        try {
+        try {                
+            System.out.println(SERVER);
+            System.out.println(DBUSER);
+            System.out.println(DBPASSWORD);
             connection = DriverManager.getConnection(SERVER, DBUSER, DBPASSWORD);
             statement = connection.createStatement();
         } catch (SQLException ex) {
-            System.out.println("Tidak dapat conenct ke MySQL");
+            System.out.println("Tidak dapat conenct ke MySQL , "+ex.toString());
         }
     }
     

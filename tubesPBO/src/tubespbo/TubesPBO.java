@@ -5,6 +5,8 @@
  */
 package tubespbo;
 
+import tubespbo.controller.ControllerLogin;
+import tubespbo.controller.ControllerRegister;
 import tubespbo.model.Aplikasi;
 
 /**
@@ -18,6 +20,7 @@ public class TubesPBO {
      */
     public static void main(String[] args) {
         Aplikasi konsol = new Aplikasi();       
+        new ControllerRegister(konsol);
     }
     
 }

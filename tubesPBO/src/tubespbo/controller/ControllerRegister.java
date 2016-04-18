@@ -40,11 +40,13 @@ public class ControllerRegister implements ActionListener {
             if(view.getRadioGroup().getSelection().equals(view.getRadioCustomer())){
                 Pelanggan p = new Pelanggan(nama, username, password, noHp);
                 aplikasi.addPelanggan(p);
-                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");                                
+                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");    
+                System.out.println("input pelanggan berhasil");
             }else if(view.getRadioGroup().getSelection().equals(view.getRadioDriver())){
                 Pengemudi p = new Pengemudi(nama, username, password, noHp);
                 aplikasi.addPengemudi(p);
-                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");                
+                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");     
+                System.out.println("input pengemudi berhasil");
             }
         }
         new ControllerLogin(aplikasi);
