@@ -5,6 +5,12 @@
  */
 package tubespbo.view;
 
+import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author asd
@@ -27,21 +33,19 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radioGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        txtnama = new javax.swing.JTextField();
+        txtusername = new javax.swing.JTextField();
+        txtpassword = new javax.swing.JTextField();
+        txthp = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-
-        jRadioButton2.setText("jRadioButton2");
+        btnok = new javax.swing.JButton();
+        radioCustomer = new javax.swing.JRadioButton();
+        radioDriver = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,13 +57,25 @@ public class Register extends javax.swing.JFrame {
 
         jLabel4.setText("Nomer HP");
 
-        jRadioButton1.setText("Customer");
-
-        jRadioButton3.setText("Driver");
-
         jLabel5.setText("REGISTER PAGE");
 
-        jButton1.setText("OK");
+        btnok.setText("OK");
+
+        radioGroup.add(radioCustomer);
+        radioCustomer.setText("Customer");
+        radioCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioCustomerActionPerformed(evt);
+            }
+        });
+
+        radioGroup.add(radioDriver);
+        radioDriver.setText("Driver");
+        radioDriver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDriverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +88,7 @@ public class Register extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
-                        .addComponent(jButton1)))
+                        .addComponent(btnok)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,25 +100,25 @@ public class Register extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField4))
+                                        .addComponent(txthp))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2))
+                                        .addComponent(txtusername))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(2, 2, 2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(39, 39, 39)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jRadioButton1)
+                        .addGap(127, 127, 127)
+                        .addComponent(radioCustomer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton3)))
+                        .addComponent(radioDriver)))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,30 +129,38 @@ public class Register extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txthp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                    .addComponent(radioCustomer)
+                    .addComponent(radioDriver))
+                .addGap(7, 7, 7)
+                .addComponent(btnok)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioCustomerActionPerformed
+
+    private void radioDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDriverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioDriverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,18 +198,73 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton radioCustomer;
+    private javax.swing.JRadioButton radioDriver;
+    private javax.swing.ButtonGroup radioGroup;
+    private javax.swing.JTextField txthp;
+    private javax.swing.JTextField txtnama;
+    private javax.swing.JTextField txtpassword;
+    private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnok() {
+        return btnok;
+    }
+
+    public ButtonGroup getRadioGroup() {
+        return radioGroup;
+    }
+
+    public JRadioButton getRadioCustomer() {
+        return radioCustomer;
+    }
+
+    public JRadioButton getRadioDriver() {
+        return radioDriver;
+    }           
+
+    public String getTxthp() {
+        return txthp.getText();
+    }
+
+    public String getTxtnama() {
+        return txtnama.getText();
+    }
+
+    public String getTxtpassword() {
+        return txtpassword.getText();
+    }
+
+    public String getTxtusername() {
+        return txtusername.getText();
+    }
+
+    public void setTxthp(String txthp) {
+        this.txthp.setText(txthp);
+    }
+
+    public void setTxtnama(String txtnama) {
+        this.txtnama.setText(txtnama);
+    }
+
+    public void setTxtpassword(String txtpassword) {
+        this.txtpassword.setText(txtpassword);
+    }
+
+    public void setTxtusername(String txtusername) {
+        this.txtusername.setText(txtusername);
+    }
+    
+    public void addListener(ActionListener e){
+        btnok.addActionListener(e);
+        radioCustomer.addActionListener(e);
+        radioDriver.addActionListener(e);
+    }
+    
 }

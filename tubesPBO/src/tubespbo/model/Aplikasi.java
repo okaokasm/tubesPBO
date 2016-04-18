@@ -38,4 +38,12 @@ public class Aplikasi {
         p.setPesanansPelanggan(connection.loadPesananNotTaken());
         return p;
     }   
+    
+    public void addPelanggan(Pelanggan p){
+        connection.savePelanggan(p);
+    }
+    
+    public void addPengemudi(Pengemudi p){
+        connection.savePengemudi(p);
+    }
 }
