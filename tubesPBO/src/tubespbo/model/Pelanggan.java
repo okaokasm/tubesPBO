@@ -40,6 +40,10 @@ public class Pelanggan extends Orang{
         pesanans.remove(x);
     }
 
+    public void setPesanans(List<Pesanan> pesanans) {
+        this.pesanans = pesanans;
+    }    
+    
     public List<Pesanan> getAllPesanan() {
         return pesanans;
     }        

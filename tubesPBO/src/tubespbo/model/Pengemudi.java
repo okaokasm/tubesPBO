@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class Pengemudi extends Orang{
     
-    private List<Pesanan> pesanans = new ArrayList<Pesanan>();
+    private List<Pesanan> pesanans = new ArrayList<Pesanan>();    
+    private List<Pesanan> pesanansPelanggan = new ArrayList<Pesanan>();
 
     public Pengemudi(int id, String nama, String username, String password, String noHp) {
         super(id, nama, username, password, noHp);
@@ -36,12 +37,25 @@ public class Pengemudi extends Orang{
         pesanans.remove(x);
     }
 
-    public List<Pesanan> getAllPesanan() {
+    public List<Pesanan> getPesanans() {
         return pesanans;
     }       
 
     public void setPesanans(List<Pesanan> pesanans) {
         this.pesanans = pesanans;
     }        
+    
+    public Pesanan getPesananPelanggan(int x){
+        return pesanans.get(x);
+    }    
+
+    public List<Pesanan> getPesanansPelanggan() {
+        return pesanansPelanggan;
+    }
+
+    public void setPesanansPelanggan(List<Pesanan> pesanansPelanggan) {
+        this.pesanansPelanggan = pesanansPelanggan;
+    }
+    
     
 }

@@ -22,7 +22,7 @@ import tubespbo.model.Pesanan;
  */
 public class Database {
     
-    private final String SERVER = "localhost";
+    private final String SERVER = "jdbc:mysql://localhost:3306/Syaujek?zeroDateTimeBehavior=convertToNull";
     private final String DBUSER = "root";
     private final String DBPASSWORD = "";
     Statement statement;
@@ -159,7 +159,27 @@ public class Database {
         return p;
     }
     
-    public ArrayList<Pesanan> loadPesanan(int idPelanggan) {
+    public ArrayList<Pesanan> loadPesananNotTaken() {
+        ArrayList<Pesanan> pesanans = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PESANAN WHERE idPengemudi = null";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getInt(4)==0){
+                    Pesanan p = new Pesanan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5));  
+                    pesanans.add(p);
+                }else{
+                    Kurir k = new Kurir(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5));
+                    pesanans.add(k);
+                }               
+            }
+        } catch (SQLException ex) {
+            System.out.println("Gagal load pesanan not taken");
+        }
+        return pesanans;
+    }
+    
+    public ArrayList<Pesanan> loadPesananPelanggan(int idPelanggan) {
         ArrayList<Pesanan> pesanans = new ArrayList<>();
         try {
             String query = "SELECT * FROM PESANAN WHERE idPelanggan = "
@@ -175,7 +195,28 @@ public class Database {
                 }               
             }
         } catch (SQLException ex) {
-            System.out.println("Gagal load barang");
+            System.out.println("Gagal load pesanan pelanggan");
+        }
+        return pesanans;
+    }
+    
+    public ArrayList<Pesanan> loadPesananPengemudi(int idPengemudi) {
+        ArrayList<Pesanan> pesanans = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PESANAN WHERE idPengemudi = "
+                    + idPengemudi;
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getInt(4)==0){
+                    Pesanan p = new Pesanan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5));  
+                    pesanans.add(p);
+                }else{
+                    Kurir k = new Kurir(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5));
+                    pesanans.add(k);
+                }               
+            }
+        } catch (SQLException ex) {
+            System.out.println("Gagal load pesanan pengemudi");
         }
         return pesanans;
     }
@@ -217,6 +258,26 @@ public class Database {
             System.out.println("Gagal update kurir");
         }
     } 
+    
+    public void takePesanan(Pesanan p) {
+        try {
+            String query = "UPDATE PESANAN SET idPengemudi = " + p.getIdPengemudi()+ ","                                   
+                    + "WHERE idPesanan = " + p.getIdPesanan();
+            statement.execute(query);
+        } catch (SQLException ex) {
+            System.out.println("Gagal take pesanan");
+        }
+    }
+    
+    public void cancelPesanan(Pesanan p) {
+        try {
+            String query = "UPDATE PESANAN SET idPengemudi = null,"                                   
+                    + "WHERE idPesanan = " + p.getIdPesanan();
+            statement.execute(query);
+        } catch (SQLException ex) {
+            System.out.println("Gagal cancel pesanan");
+        }
+    }
     
     public void deletePesanan(int idPesanan) {
         try {

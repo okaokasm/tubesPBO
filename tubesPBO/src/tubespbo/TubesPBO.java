@@ -5,6 +5,8 @@
  */
 package tubespbo;
 
+import tubespbo.model.Aplikasi;
+
 /**
  *
  * @author irfananda
@@ -15,7 +17,7 @@ public class TubesPBO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Konsol konsol = new Konsol();       
+        Aplikasi konsol = new Aplikasi();       
     }
     
 }
