@@ -16,6 +16,10 @@ public class Pengemudi extends Orang{
     
     private List<Pesanan> pesanans = new ArrayList<Pesanan>();
 
+    public Pengemudi(int id, String nama, String username, String password, String noHp) {
+        super(id, nama, username, password, noHp);
+    }        
+
     public Pengemudi(String nama, String username, String password, String noHp) {
         super(nama, username, password, noHp);
     }

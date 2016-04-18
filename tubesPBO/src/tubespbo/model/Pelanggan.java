@@ -16,16 +16,20 @@ public class Pelanggan extends Orang{
     
     private List<Pesanan> pesanans = new ArrayList<>();
 
+    public Pelanggan(int id, String nama, String username, String password, String noHp) {
+        super(id, nama, username, password, noHp);
+    }        
+
     public Pelanggan(String nama, String username, String password, String noHp) {
         super(nama, username, password, noHp);
     }
     
     public void createPesanan(String origin, String destination){
-        pesanans.add(new Pesanan(origin, destination));
+        pesanans.add(new Pesanan(origin, destination,super.getId()));
     }
     
     public void createPesananKurir(String origin, String destination, int weight){
-        pesanans.add(new Kurir(origin, destination,weight));
+        pesanans.add(new Kurir(origin, destination,weight,super.getId()));
     }
     
     public Pesanan getPesanan(int x){

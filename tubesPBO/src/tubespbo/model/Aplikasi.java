@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubespbo;
+package tubespbo.model;
 
 /**
  *
  * @author irfananda
  */
-public class TubesPBO {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Konsol konsol = new Konsol();       
-    }
+public class Aplikasi {
     
 }

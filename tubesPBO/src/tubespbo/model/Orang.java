@@ -10,18 +10,36 @@ package tubespbo.model;
  * @author Acer-PC
  */
 public class Orang {
+        private int id;
 	private String nama; 
 	private String username;
 	private String password;
 	private String noHp;
+
+    public Orang(int id, String nama, String username, String password, String noHp) {
+        this.id = id;
+        this.nama = nama;
+        this.username = username;
+        this.password = password;
+        this.noHp = noHp;
+    }                
 	
 public Orang (String nama, String username, String password, String noHp){
+        id = -1;
 	this.nama = nama;
 	this.username = username;
 	this.password = password;
 	this.noHp = noHp;
 }
 
+public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 public void setNama(String nama) {
 	this.nama = nama;
 }

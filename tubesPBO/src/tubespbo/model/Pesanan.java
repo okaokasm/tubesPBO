@@ -11,13 +11,49 @@ package tubespbo.model;
  */
 public class Pesanan {
 	
+    private int idPesanan;
     private String origin;
     private String destination;
-	
-    public Pesanan (String origin, String destination) {
-            this.origin = origin;
-            this.destination = destination;
+    private int idPelanggan;
+    private int idPengemudi;
+
+    public Pesanan(int idPesanan, String origin, String destination, int idPelanggan) {
+        this.idPesanan = idPesanan;
+        this.origin = origin;
+        this.destination = destination;
+        this.idPelanggan = idPelanggan;
     }
+
+    public Pesanan(String origin, String destination, int idPelanggan) {
+        idPesanan = -1;
+        this.origin = origin;
+        this.destination = destination;
+        this.idPelanggan = idPelanggan;
+    }        
+
+    public int getIdPelanggan() {
+        return idPelanggan;
+    }
+
+    public void setIdPelanggan(int idPelanggan) {
+        this.idPelanggan = idPelanggan;
+    }
+
+    public int getIdPengemudi() {
+        return idPengemudi;
+    }
+
+    public void setIdPengemudi(int idPengemudi) {
+        this.idPengemudi = idPengemudi;
+    }        
+
+    public int getIdPesanan() {
+        return idPesanan;
+    }
+
+    public void setIdPesanan(int idPesanan) {
+        this.idPesanan = idPesanan;
+    }        
 
     public void setOrigin (String origin){
             this.origin= origin;

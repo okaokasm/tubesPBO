@@ -12,10 +12,15 @@ package tubespbo.model;
 public class Kurir extends Pesanan {
 	private double weight;
 
-    public Kurir(String origin, String destination, double weight) {
-        super(origin, destination);
+    public Kurir(int idPesanan, String origin, String destination, double weight, int idPelanggan) {
+        super(idPesanan, origin, destination, idPelanggan);
         this.weight = weight;
     }
+
+    public Kurir(String origin, String destination, double weight, int idPelanggan) {
+        super(origin, destination, idPelanggan);
+        this.weight = weight;
+    }   
 
 public void setWeight(double weight) {
 	this.weight= weight;
