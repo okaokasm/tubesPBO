@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubespbo;
+package tubespbo.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,13 @@ import java.util.List;
  *
  * @author irfananda
  */
-public class Pengemudi {
+public class Pengemudi extends Orang{
     
-    private List<Pesanan> pesanans = new ArrayList<>();
+    private List<Pesanan> pesanans = new ArrayList<Pesanan>();
+
+    public Pengemudi(String nama, String username, String password, String noHp) {
+        super(nama, username, password, noHp);
+    }
     
     public void addPesanan(Pesanan p){
         pesanans.add(p);
@@ -27,5 +31,13 @@ public class Pengemudi {
     public void removePesanan(int x){
         pesanans.remove(x);
     }
+
+    public List<Pesanan> getAllPesanan() {
+        return pesanans;
+    }       
+
+    public void setPesanans(List<Pesanan> pesanans) {
+        this.pesanans = pesanans;
+    }        
     
 }
