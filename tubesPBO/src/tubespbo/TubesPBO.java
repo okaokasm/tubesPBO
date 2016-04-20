@@ -20,7 +20,7 @@ public class TubesPBO {
      */
     public static void main(String[] args) {
         Aplikasi konsol = new Aplikasi();       
-        new ControllerRegister(konsol);
+        new ControllerLogin(konsol);
     }
     
 }

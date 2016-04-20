@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import tubespbo.model.Aplikasi;
 import tubespbo.model.Pelanggan;
 import tubespbo.model.Pengemudi;
-import tubespbo.view.Register;
+import tubespbo.view.ViewRegister;
 
 /**
  *
@@ -20,13 +20,15 @@ import tubespbo.view.Register;
 public class ControllerRegister implements ActionListener {
 
     private Aplikasi aplikasi;
-    private Register view;
+    private ViewRegister view;
+    private String tipe;
 
     public ControllerRegister(Aplikasi aplikasi) {
         this.aplikasi = aplikasi;
-        view = new Register();
+        view = new ViewRegister();
         view.setVisible(true);
         view.addListener(this);
+        tipe = "null";
     }
     
     @Override
@@ -37,20 +39,26 @@ public class ControllerRegister implements ActionListener {
             String username = view.getTxtusername();
             String password = view.getTxtpassword();
             String noHp = view.getTxthp();
-            if(view.getRadioGroup().getSelection().equals(view.getRadioCustomer())){
+            if(tipe.equalsIgnoreCase(view.getRadioCustomer().getText())){
                 Pelanggan p = new Pelanggan(nama, username, password, noHp);
                 aplikasi.addPelanggan(p);
-                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");    
-                System.out.println("input pelanggan berhasil");
-            }else if(view.getRadioGroup().getSelection().equals(view.getRadioDriver())){
+                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");                    
+                new ControllerLogin(aplikasi);
+                view.dispose();
+            }else if(tipe.equalsIgnoreCase(view.getRadioDriver().getText())){
                 Pengemudi p = new Pengemudi(nama, username, password, noHp);
                 aplikasi.addPengemudi(p);
-                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");     
-                System.out.println("input pengemudi berhasil");
+                JOptionPane.showMessageDialog(view, "Registrasi Berhasil");                    
+                new ControllerLogin(aplikasi);
+                view.dispose();
+            }else if(tipe.equalsIgnoreCase("null")){
+                JOptionPane.showMessageDialog(view, "Jenis registrasi harus dipilih");     
             }
-        }
-        new ControllerLogin(aplikasi);
-        view.dispose();
+        }else if(source.equals(view.getRadioCustomer())){
+            tipe = view.getRadioCustomer().getText();
+        }else if(source.equals(view.getRadioDriver())){
+            tipe = view.getRadioDriver().getText();
+        }            
     }
     
 }

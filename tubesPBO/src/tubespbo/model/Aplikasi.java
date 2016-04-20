@@ -27,17 +27,36 @@ public class Aplikasi {
     }
        
     public Pelanggan loginPelanggan(String username, String password){       
-        Pelanggan p = connection.getPelanggan(username, password);
-        p.setPesanans(connection.loadPesananPelanggan(p.getId()));
-        return p;
+        pelanggan = connection.getPelanggan(username, password);
+        if(pelanggan!=null)
+            pelanggan.setPesanans(connection.loadPesananPelanggan(pelanggan.getId()));
+        return pelanggan;
     }
     
     public Pengemudi loginPengemudi(String username, String password){
-        Pengemudi p = connection.getPengemudi(username, password);
-        p.setPesanans(connection.loadPesananPengemudi(p.getId()));
-        p.setPesanansPelanggan(connection.loadPesananNotTaken());
-        return p;
+        pengemudi = connection.getPengemudi(username, password);       
+        if(pengemudi!=null){
+            pengemudi.setPesanans(connection.loadPesananPengemudi(pengemudi.getId()));
+            pengemudi.setPesanansPelanggan(connection.loadPesananNotTaken());           
+        }
+        return pengemudi;
     }   
+    
+    public void refreshPelanggan(){
+        if(pelanggan!=null)
+            pelanggan.setPesanans(connection.loadPesananPelanggan(pelanggan.getId()));
+    }
+    
+    public void refreshPengemudi(){
+        if(pengemudi!=null){
+            pengemudi.setPesanans(connection.loadPesananPengemudi(pengemudi.getId()));
+            pengemudi.setPesanansPelanggan(connection.loadPesananNotTaken());
+        }
+    }
+    
+    public void takePesanan(int idPengemudi, Pesanan p){
+        connection.takePesanan(idPengemudi, p);
+    }
     
     public void addPelanggan(Pelanggan p){
         connection.savePelanggan(p);
@@ -45,5 +64,17 @@ public class Aplikasi {
     
     public void addPengemudi(Pengemudi p){
         connection.savePengemudi(p);
+    }
+
+    public Database getConnection() {
+        return connection;
+    }    
+    
+    public Pelanggan getPelanggan(int id){
+        return connection.getPelanggan(id);
+    }
+    
+    public Pengemudi getPengemudi(int id){
+        return connection.getPengemudi(id);
     }
 }

@@ -32,8 +32,13 @@ public class Pelanggan extends Orang{
         pesanans.add(new Kurir(origin, destination,weight,super.getId()));
     }
     
-    public Pesanan getPesanan(int x){
-        return pesanans.get(x);
+    public Pesanan getPesanan(int id){
+        for (int i = 0; i < pesanans.size(); i++) {
+            if(id==pesanans.get(i).getIdPesanan()){
+                return pesanans.get(i);
+            }
+        }
+        return null;
     }
     
     public void removePesanan(int x){
@@ -46,6 +51,13 @@ public class Pelanggan extends Orang{
     
     public List<Pesanan> getAllPesanan() {
         return pesanans;
-    }        
+    }     
     
+    public String[] getListIdPesanans(){
+        ArrayList<String> listId = new ArrayList<>();        
+        for(int i=0; i<pesanans.size();i++){            
+            listId.add(String.valueOf(pesanans.get(i).getIdPesanan()));
+        }
+        return listId.toArray(new String[0]);
+    }        
 }

@@ -22,11 +22,20 @@ public class Kurir extends Pesanan {
         this.weight = weight;
     }   
 
-public void setWeight(double weight) {
-	this.weight= weight;
-}
+    public void setWeight(double weight) {
+            this.weight= weight;
+    }
 
-public double getWeight() {
-	return this.weight;
-}
+    public double getWeight() {
+            return this.weight;
+    }
+    
+    public String setString(Aplikasi aplikasi){
+        return "<html>ID : "+ super.getIdPesanan()+"<br>"
+                + "Kurir : " + super.getOrigin() + " - " + super.getDestination()+"<br>"
+                + "Weight : " + weight + " kg"+"<br>"
+                + "Nama Pelanggan : " + aplikasi.getPelanggan(super.getIdPelanggan()).getNama()+"<br>"
+                + "NoHP Pelanggan : " + aplikasi.getPelanggan(super.getIdPelanggan()).getNoHp()+"<br>"
+                +"</html>";
+    }
 }

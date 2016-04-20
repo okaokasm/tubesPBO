@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class Pengemudi extends Orang{
     
-    private List<Pesanan> pesanans = new ArrayList<Pesanan>();    
-    private List<Pesanan> pesanansPelanggan = new ArrayList<Pesanan>();
+    private List<Pesanan> pesanans;    
+    private List<Pesanan> pesanansPelanggan;
 
     public Pengemudi(int id, String nama, String username, String password, String noHp) {
         super(id, nama, username, password, noHp);
@@ -45,8 +45,13 @@ public class Pengemudi extends Orang{
         this.pesanans = pesanans;
     }        
     
-    public Pesanan getPesananPelanggan(int x){
-        return pesanans.get(x);
+    public Pesanan getPesananPelanggan(int id){
+        for (int i = 0; i < pesanansPelanggan.size(); i++) {
+            if(id==pesanansPelanggan.get(i).getIdPesanan()){
+                return pesanansPelanggan.get(i);
+            }
+        }
+        return null;
     }    
 
     public List<Pesanan> getPesanansPelanggan() {
@@ -57,5 +62,11 @@ public class Pengemudi extends Orang{
         this.pesanansPelanggan = pesanansPelanggan;
     }
     
-    
+    public String[] getListIdPesanansPelanggan(){
+        ArrayList<String> listId = new ArrayList<>();        
+        for(int i=0; i<pesanansPelanggan.size();i++){            
+            listId.add(String.valueOf(pesanansPelanggan.get(i).getIdPesanan()));
+        }
+        return listId.toArray(new String[0]);
+    }        
 }

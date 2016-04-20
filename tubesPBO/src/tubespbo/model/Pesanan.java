@@ -68,5 +68,13 @@ public class Pesanan {
     public String getDestination() {
             return this.destination;
     }
+    
+    public String setString(Aplikasi aplikasi){        
+        return "<html>ID : "+ idPesanan+"<br>"
+                + "Pesanan : " + origin + " - " + destination+"<br>"
+                + "Nama Pelanggan : " + aplikasi.getPelanggan(idPelanggan).getNama()+"<br>"
+                + "NoHP Pelanggan : " + aplikasi.getPelanggan(idPelanggan).getNoHp()+"<br>"
+                +"</html>";
+    }
 
 }

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import tubespbo.model.Kurir;
 import tubespbo.model.Pelanggan;
 import tubespbo.model.Pengemudi;
@@ -30,13 +31,10 @@ public class Database {
     
     public void connect() {
         try {                
-            System.out.println(SERVER);
-            System.out.println(DBUSER);
-            System.out.println(DBPASSWORD);
             connection = DriverManager.getConnection(SERVER, DBUSER, DBPASSWORD);
             statement = connection.createStatement();
         } catch (SQLException ex) {
-            System.out.println("Tidak dapat conenct ke MySQL , "+ex.toString());
+            System.out.println("Tidak dapat connect ke MySQL , "+ex.toString());
         }
     }
     
@@ -118,15 +116,30 @@ public class Database {
     public Pelanggan getPelanggan(String username, String password) {
         Pelanggan p = null;
         try {
-            String query = "SELECT * FROM PELANGGAN WHERE username = '"
-                    + username + "',"
+            String query = "SELECT * FROM PELANGGAN WHERE"
+                    + " username = '" + username + "' "
                     + " AND password = '" + password +"'";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 p = new Pelanggan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
             }
         } catch (SQLException ex) {
-            System.out.println("Gagal select");
+            System.out.println("Gagal select Pelanggan "+ex.getMessage().toString());
+        }
+        return p;
+    }
+    
+    public Pelanggan getPelanggan(int id) {
+        Pelanggan p = null;
+        try {
+            String query = "SELECT * FROM PELANGGAN WHERE"
+                    + " idPelanggan = " + id;
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                p = new Pelanggan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Gagal select specified Pelanggan "+ex.getMessage().toString());
         }
         return p;
     }
@@ -134,15 +147,30 @@ public class Database {
     public Pengemudi getPengemudi(String username, String password) {
         Pengemudi p = null;
         try {
-            String query = "SELECT * FROM PENGEMUDI WHERE username = '"
-                    + username + "',"
+            String query = "SELECT * FROM PENGEMUDI WHERE"
+                    + " username = '" + username + "'"
                     + " AND password = '" + password +"'";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 p = new Pengemudi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
             }
         } catch (SQLException ex) {
-            System.out.println("Gagal select");
+            System.out.println("Gagal select Pengemudi "+ex.getMessage().toString());
+        }
+        return p;
+    }
+    
+    public Pengemudi getPengemudi(int id) {
+        Pengemudi p = null;
+        try {
+            String query = "SELECT * FROM PENGEMUDI WHERE"
+                    + " idPengemudi = " + id;
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                p = new Pengemudi(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Gagal select specified Pengemudi "+ex.getMessage().toString());
         }
         return p;
     }
@@ -162,18 +190,18 @@ public class Database {
         return p;
     }
     
-    public ArrayList<Pesanan> loadPesananNotTaken() {
-        ArrayList<Pesanan> pesanans = new ArrayList<>();
-        try {
-            String query = "SELECT * FROM PESANAN WHERE idPengemudi = null";
+    public List<Pesanan> loadPesananNotTaken() {
+        List<Pesanan> pesanans = new ArrayList<>();
+        try {           
+            String query = "SELECT * FROM PESANAN WHERE idPengemudi is NULL";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 if(rs.getInt(4)==0){
                     Pesanan p = new Pesanan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5));  
-                    pesanans.add(p);
+                    pesanans.add(p);                    
                 }else{
                     Kurir k = new Kurir(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5));
-                    pesanans.add(k);
+                    pesanans.add(k);                  
                 }               
             }
         } catch (SQLException ex) {
@@ -182,8 +210,8 @@ public class Database {
         return pesanans;
     }
     
-    public ArrayList<Pesanan> loadPesananPelanggan(int idPelanggan) {
-        ArrayList<Pesanan> pesanans = new ArrayList<>();
+    public List<Pesanan> loadPesananPelanggan(int idPelanggan) {
+        List<Pesanan> pesanans = new ArrayList<>();
         try {
             String query = "SELECT * FROM PESANAN WHERE idPelanggan = "
                     + idPelanggan;
@@ -203,8 +231,8 @@ public class Database {
         return pesanans;
     }
     
-    public ArrayList<Pesanan> loadPesananPengemudi(int idPengemudi) {
-        ArrayList<Pesanan> pesanans = new ArrayList<>();
+    public List<Pesanan> loadPesananPengemudi(int idPengemudi) {
+        List<Pesanan> pesanans = new ArrayList<>();
         try {
             String query = "SELECT * FROM PESANAN WHERE idPengemudi = "
                     + idPengemudi;
@@ -242,7 +270,7 @@ public class Database {
     public void updatePesanan(Pesanan p) {
         try {
             String query = "UPDATE PESANAN SET origin = '" + p.getOrigin()+ "',"
-                    + "destination = '" + p.getDestination()+ "', "                  
+                    + "destination = '" + p.getDestination()+ "' "                  
                     + "WHERE idPesanan = " + p.getIdPesanan();
             statement.execute(query);
         } catch (SQLException ex) {
@@ -254,18 +282,18 @@ public class Database {
         try {
             String query = "UPDATE PESANAN SET origin = '" + k.getOrigin()+ "',"
                     + "destination = '" + k.getDestination()+ "', "                  
-                    + "weight = " + k.getWeight()+ " , "   
-                    + "WHERE idPesanan = " + k.getIdPesanan();
+                    + "weight = " + k.getWeight()   
+                    + " WHERE idPesanan = " + k.getIdPesanan();
             statement.execute(query);
         } catch (SQLException ex) {
             System.out.println("Gagal update kurir");
         }
     } 
     
-    public void takePesanan(Pesanan p) {
+    public void takePesanan(int idPengemudi, Pesanan p) {
         try {
-            String query = "UPDATE PESANAN SET idPengemudi = " + p.getIdPengemudi()+ ","                                   
-                    + "WHERE idPesanan = " + p.getIdPesanan();
+            String query = "UPDATE PESANAN SET idPengemudi = " + idPengemudi                                    
+                    + " WHERE idPesanan = " + p.getIdPesanan();
             statement.execute(query);
         } catch (SQLException ex) {
             System.out.println("Gagal take pesanan");
@@ -274,7 +302,7 @@ public class Database {
     
     public void cancelPesanan(Pesanan p) {
         try {
-            String query = "UPDATE PESANAN SET idPengemudi = null,"                                   
+            String query = "UPDATE PESANAN SET idPengemudi = null"                                   
                     + "WHERE idPesanan = " + p.getIdPesanan();
             statement.execute(query);
         } catch (SQLException ex) {
