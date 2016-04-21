@@ -49,12 +49,29 @@ public class ControllerPelanggan extends MouseAdapter implements ActionListener 
             String origin = view.getTxtOrigin();
             String destination = view.getTxtDestination();
             int weight = view.getTxtWeight();
-            if(weight!=0){
-                model.getConnection().saveKurir(new Kurir(origin, destination, weight, pelanggan.getId()));
-            }else{
-                model.getConnection().savePesanan(new Pesanan(origin, destination, pelanggan.getId()));
+            if(view.getBtnPesan().getText().equals("Pesan")){
+                if(weight!=0){
+                    model.getConnection().saveKurir(new Kurir(origin, destination, weight, pelanggan.getId()));
+                }else{
+                    model.getConnection().savePesanan(new Pesanan(origin, destination, pelanggan.getId()));
+                }
+                JOptionPane.showMessageDialog(view, "Pesanan berhasil disimpan"); 
+                view.setTxtOrigin("");
+                view.setTxtDestination("");
+                view.setTxtWeight("");
+            }else if(view.getBtnPesan().getText().equals("Ubah")){
+                if(weight!=0){
+                    model.getConnection().updateKurir(new Kurir(idPesanan, origin, destination, weight, pelanggan.getId()));
+                }else{
+                    model.getConnection().updatePesanan(new Pesanan(idPesanan, origin, destination, pelanggan.getId()));
+                }
+                idPesanan = 0;
+                JOptionPane.showMessageDialog(view, "Pesanan berhasil diubah"); 
+                view.getBtnPesan().setText("Pesan");
+                view.setTxtOrigin("");
+                view.setTxtDestination("");
+                view.setTxtWeight("");
             }
-            JOptionPane.showMessageDialog(view, "Pesanan berhasil disimpan"); 
             model.refreshPelanggan();
             view.setListPesanan(pelanggan.getListIdPesanans());  
         }else if(source.equals(view.getBtnEdit())){
@@ -69,17 +86,20 @@ public class ControllerPelanggan extends MouseAdapter implements ActionListener 
                     view.setTxtWeight(((Kurir) pesanan).getWeight()+"");
                 }                
                 model.refreshPelanggan();
-                view.setListPesanan(pelanggan.getListIdPesanans());  
+                view.setListPesanan(pelanggan.getListIdPesanans()); 
+                view.getBtnPesan().setText("Ubah");
+            }else{
+                JOptionPane.showMessageDialog(view, "Pilih pesanan dahulu"); 
             }
-            JOptionPane.showMessageDialog(view, "Pilih pesanan dahulu"); 
         }else if(source.equals(view.getBtnHapus())){
             if(idPesanan!=0){                
                 model.getConnection().deletePesanan(idPesanan);
                 JOptionPane.showMessageDialog(view, "Pesanan berhasil dihapus"); 
                 model.refreshPelanggan();
                 view.setListPesanan(pelanggan.getListIdPesanans());  
+            }else{
+                JOptionPane.showMessageDialog(view, "Pilih pesanan dahulu"); 
             }
-            JOptionPane.showMessageDialog(view, "Pilih pesanan dahulu"); 
         }
     }
     
